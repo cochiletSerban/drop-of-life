@@ -4,7 +4,7 @@ html, body{
    height: 100%;
 }
 
-/* sets global color palette 
+/* sets global color palette
    #A6E275 light
    #7EC146
    #61AA25
@@ -12,9 +12,13 @@ html, body{
 */
 
 nav, button  {
-  background-color:#61AA25 !important;
+  background-color:$dark-red !important;
 }
 
 .btn:hover {
-  background-color:#7EC146 !important;
+  background-color:$light-red !important;
+}
+
+i {
+ color:$light-red !important;
 }

@@ -1,3 +1,4 @@
+@import '../../sass/vars';
 /*
                 --1--
 *   Late at night it is,              *
@@ -18,7 +19,7 @@
   /*needed to let divs get up to 100vh*/
   overflow: auto;
   height: 100%;
-  background-color: rgb(26, 77, 68);
+  background-color: rgba($dark-red, 0.4);
   /* fall back colors*/
 }
 
@@ -30,7 +31,11 @@
   z-index: 2;
   padding: 0;
   margin: 0;
-  background-color: rgba(26, 77, 68, 0.6);
+  background-color: $fall-back-color;
+}
+
+.slider {
+  filter: blur(10px);
 }
 
 .wrapper {
@@ -41,7 +46,7 @@
 
 .shadow {
   /* adds some sparkle to the text*/
-  color: white;
+  color:white;
   text-shadow: 3px 0px 5px black;
 }
 
@@ -64,7 +69,7 @@ i {
 .btn {
   /* fixes materilize css bug that cuts btn text */
   height: 100%;
-  background-color: #61aa25;
+  color: white;
 }
 
 .bar {
@@ -72,7 +77,7 @@ i {
   min-width: 100%;
   min-height: 4px;
   z-index: 3;
-  background-color: #78ce32;
+  background-color:$light-red;
 }
 
 
@@ -90,7 +95,7 @@ i {
 }
 
 @media only screen and (max-width: 979px) {
-  .fa-diamond {
+  .fa-tint {
     display: none;
   }
   .logo {
