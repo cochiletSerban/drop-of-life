@@ -12,17 +12,20 @@ import { AuthPageComponent } from './auth-page/auth-page.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'login', component: AuthPageComponent },
+  { path: 'user-profile', component: UserProfileComponent }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingPageComponent,
-    AuthPageComponent
+    AuthPageComponent,
+    UserProfileComponent
   ],
   imports: [
     MaterializeModule,
