@@ -10,9 +10,7 @@ export class UserProfileComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    
-      $('.tabs').tabs();
-    
+    $('.tabs').tabs();
   }
 
 }

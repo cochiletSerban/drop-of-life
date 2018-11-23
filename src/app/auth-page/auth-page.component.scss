@@ -22,6 +22,8 @@
   border-radius: 5px;
   text-align: center;
   padding-top: 80px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+
 }
 
 .titleBarContainer {
@@ -30,8 +32,8 @@
 }
 
 .titleBar {
-  height: 120px;
-  width: 120px;
+  height: 90px;
+  width: 90px;
   border-radius: 50%;
   margin: 0 auto;
   border-bottom: 2px solid #ECEFF1;
@@ -41,9 +43,11 @@
 }
 
 .titleBar>img {
-  width: 125px;
+  width: 120px;
   position: relative;
-  left: -4px;
+  left: -18px;
+  top:-40px;
+
 }
 
 .titleBar:after {
@@ -141,4 +145,11 @@ h4 {
 
 .errMsgText {
   margin:0 auto;
+}
+
+
+@media only screen and (min-width: 992px) {
+  .centerOnLarge {
+    left:37% !important;
+  }
 }
