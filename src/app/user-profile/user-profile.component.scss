@@ -1,0 +1,45 @@
+@import '../../sass/vars';
+
+
+.col {
+    // border:2px solid black;
+    padding:0;
+    margin: 0;
+
+}
+
+.large {
+    font-size: 8rem;
+}
+
+
+
+h3 {
+    margin: 10px;
+
+}
+
+.row {
+    margin: 0;
+}
+
+.header {
+    background:url('../../assets/img/ep_naturalblack.png');
+    color: white;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    border-bottom:  5px solid  $dark-red;
+    // text-shadow: 10px 10px 10px black;
+    margin-bottom: 10px;
+}
+
+
+.tolo {
+    background-color: rgba(1,1,1,0.5);
+    height: 500px;
+}
+
+#bloodWork, #donationHistory {
+    margin-top: 10px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}

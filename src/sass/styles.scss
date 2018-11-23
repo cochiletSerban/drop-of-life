@@ -1,6 +1,8 @@
 @import './vars';
+@import './hr';
+@import './nav';
 
-html, body{
+html, body {
    height: 100%;
 }
 
@@ -21,4 +23,22 @@ nav, button  {
 
 i {
  color:$light-red !important;
+}
+
+.tabs .tab a {
+  color:$dark-red;
+}
+
+.tabs .tab a.active {
+  color:$light-red;
+}
+
+.tabs .indicator {
+  background-color: $dark-red;
+}
+
+.tabs.tabs-fixed-width {
+  // box-shadow: none;
+  // background-color:#EEEEEE;
+  // border-top:2px solid $dark-red;
 }
