@@ -13,11 +13,13 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { AvaibleDonationsComponent } from './avaible-donations/avaible-donations.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'login', component: AuthPageComponent },
-  { path: 'user-profile', component: UserProfileComponent }
+  { path: 'user-profile', component: UserProfileComponent },
+  { path: 'avaible-donations', component: AvaibleDonationsComponent }
 ];
 
 @NgModule({
@@ -25,7 +27,8 @@ const appRoutes: Routes = [
     AppComponent,
     LandingPageComponent,
     AuthPageComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    AvaibleDonationsComponent
   ],
   imports: [
     MaterializeModule,

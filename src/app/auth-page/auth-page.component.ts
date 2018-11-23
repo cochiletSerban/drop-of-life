@@ -2,7 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild, Renderer2, AfterViewInit } fr
 import { AuthService } from '../services/auth.service';
 import { User } from '../objects/User';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-
+declare var $:  any;
 @Component({
   selector: 'app-auth-page',
   templateUrl: './auth-page.component.html',
@@ -31,6 +31,7 @@ export class AuthPageComponent implements OnInit {
 
 
   ngOnInit() {
+    $('.tabs').tabs();
     this.loginForm = new FormGroup({
       'password' : new FormControl(null, Validators.required),
       'email' : new FormControl(null, [Validators.email , Validators.required])
