@@ -1,10 +1,13 @@
 @import './vars';
 @import './hr';
 @import './nav';
+@import './box';
 
 html, body {
    height: 100%;
 }
+
+
 
 /* sets global color palette
    #A6E275 light
@@ -41,4 +44,9 @@ i {
   // box-shadow: none;
   // background-color:#EEEEEE;
   // border-top:2px solid $dark-red;
+}
+
+
+.btn {
+  text-transform:capitalize;
 }

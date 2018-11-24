@@ -14,6 +14,7 @@ import { AuthService } from './services/auth.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AvaibleDonationsComponent } from './avaible-donations/avaible-donations.component';
+import { CauseComponent } from './cause/cause.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -28,7 +29,8 @@ const appRoutes: Routes = [
     LandingPageComponent,
     AuthPageComponent,
     UserProfileComponent,
-    AvaibleDonationsComponent
+    AvaibleDonationsComponent,
+    CauseComponent
   ],
   imports: [
     MaterializeModule,
