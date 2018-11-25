@@ -42,7 +42,9 @@
 
 }
 
-
+.modal.bottom-sheet {
+    max-height: 70%; // modify the modal height
+}
 
 .cont {
     // border: 2px solid red;
