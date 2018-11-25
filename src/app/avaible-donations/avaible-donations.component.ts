@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
+
 
 @Component({
   selector: 'app-avaible-donations',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AvaibleDonationsComponent implements OnInit {
 
+
   constructor() { }
 
   ngOnInit() {
   }
+
+
 
 }

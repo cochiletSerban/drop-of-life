@@ -1,6 +1,6 @@
 
 <div class="cont">
-    <div class="wrapper">
+    <div class="wrapper" (click)="openModal()">
         <img src="../../assets/img/bloodBag.png" width="140" id="bag" alt="">
         <img src="../../assets/img/blood.png" width="140" id="blood" alt="" #blood [style.transform]="'scaleY(' + procent +')'" >
         <div class="tag center-align">
@@ -9,7 +9,25 @@
            Are nevoide de 5l de AB+
         </div>
     </div>
-    <button class="btn">Donate</button>
+
+    <button class="btn waves-effect waves-light ">Donate</button>
+
+    <div id="modal" class="modal bottom-sheet" materialize="modal" [materializeParams]="[{dismissible: true}]" [materializeActions]="modalActions">
+      <div class="modal-content">
+        <h4>Fatau Jigi</h4>
+        <div class="hr"></div>
+        <p>mai are nevoie de: 10L de sange de tip AB+ pana pe 23/11/2018</p>
+        <p>ultima persona care a donat a fost: Meleclu Jigi (22/11/2018)</p>
+
+
+      </div>
+      <div class="modal-footer">
+        <button class=" waves-effect waves-light btn" (click)="closeModal()">ma doare la bana</button>
+        <button class="modal-action modal-close waves-effect  waves-light  btn">Nu-l lasa la moara, doneaza</button>
+      </div>
+    </div>
+
+
 </div>
 
 <!--  -->

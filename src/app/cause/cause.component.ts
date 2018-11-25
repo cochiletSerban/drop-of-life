@@ -1,4 +1,5 @@
-import { Component, OnInit, AfterViewChecked, AfterViewInit, Renderer2, ElementRef, ViewChild, ViewChildren } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Renderer2, ElementRef, ViewChild, EventEmitter } from '@angular/core';
+import { MaterializeDirective, MaterializeAction } from 'angular2-materialize';
 import { Renderer3 } from '@angular/core/src/render3/renderer';
 
 
@@ -8,7 +9,7 @@ import { Renderer3 } from '@angular/core/src/render3/renderer';
   styleUrls: ['./cause.component.scss']
 })
 export class CauseComponent implements OnInit, AfterViewInit {
-  
+  modalActions = new EventEmitter<string|MaterializeAction>();
   procent = 0;
   @ViewChild('blood') blood: ElementRef;
 
@@ -18,15 +19,22 @@ export class CauseComponent implements OnInit, AfterViewInit {
 
   }
 
+
+  closeModal() {
+    this.modalActions.emit({action: 'modal', params: ['close']});
+  }
+
+  openModal() {
+    this.modalActions.emit({action: 'modal', params: ['open']});
+  }
+
+
   ngAfterViewInit() {
     let timeleft = 0;
 
     const downloadTimer = setInterval(() => {
-      console.log(this.blood);
       this.procent += timeleft;
-      this.procent = this.procent/10;
-      console.log(this.procent);
-      
+      this.procent = this.procent / 10;
       timeleft++;
       if (timeleft > 10) {
         timeleft = 0;
