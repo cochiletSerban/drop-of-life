@@ -50,3 +50,16 @@ i {
 .btn {
   text-transform:capitalize;
 }
+
+
+.backbtn {
+  @extend .btn;
+  font-size: 175%;
+  border: none;
+}
+
+.centered-btn {
+  @extend .btn;
+  display: block;
+  margin: 0 auto;
+}
