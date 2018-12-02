@@ -41,17 +41,22 @@ export class UserProfileComponent implements OnInit {
   ]
 
   constructor() { }
-
+  showSorryText = false;
   ngOnInit() {
     $('.tabs').tabs();
   }
 
   openModal() {
+    this.showSorryText = false
     this.modalActions.emit({action: 'modal', params: ['open']});
   }
 
   closeModal() {
     this.modalActions.emit({action: 'modal', params: ['close']});
+  }
+
+  switchText() {
+    this.showSorryText = true;
   }
 }
 
