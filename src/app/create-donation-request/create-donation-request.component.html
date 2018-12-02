@@ -1,0 +1,27 @@
+<button class="btn waves-effect waves-light modal-trigger" data-target="modal1">Create a donation request</button>
+
+<div id="modal1" class="modal bottom-sheet" materialize="modal" [materializeParams]="[{dismissible: true}]" [materializeActions]="modalActions">
+    <div class="modal-content container">
+      
+        <div class="row">
+            <form class="col s12" [formGroup]="createDonationForm" (ngSubmit)="createRequest()">
+              <div class="row">
+                <div class="input-field col s12 m6">
+                  <i class="material-icons prefix">mode_edit</i>
+                  <input id="icon_prefix2" formControlName="name" type="text">
+                  <label for="icon_prefix2">Patient Name</label>
+                </div>
+
+                
+
+              </div>
+            </form>
+          </div>
+                
+
+    </div>
+    <div class="modal-footer">
+      <button class=" modal-action modal-close  waves-effect waves-light btn" >ma doare la bana</button>
+      <button class=" waves-effect  waves-light  btn">Nu-l lasa la moara, doneaza</button>
+    </div>
+  </div>
