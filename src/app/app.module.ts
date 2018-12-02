@@ -15,14 +15,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AvaibleDonationsComponent } from './avaible-donations/avaible-donations.component';
 import { CauseComponent } from './cause/cause.component';
-import { UserFormComponent } from './user-form/user-form.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'login', component: AuthPageComponent },
   { path: 'user-profile', component: UserProfileComponent },
-  { path: 'avaible-donations', component: AvaibleDonationsComponent },
-  { path: 'user-form', component: UserFormComponent }
+  { path: 'avaible-donations', component: AvaibleDonationsComponent }
 ];
 
 @NgModule({
@@ -32,8 +30,7 @@ const appRoutes: Routes = [
     AuthPageComponent,
     UserProfileComponent,
     AvaibleDonationsComponent,
-    CauseComponent,
-    UserFormComponent
+    CauseComponent
   ],
   imports: [
     MaterializeModule,
