@@ -16,12 +16,14 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AvaibleDonationsComponent } from './avaible-donations/avaible-donations.component';
 import { CauseComponent } from './cause/cause.component';
 import { DoctorProfileComponent } from './doctor-profile/doctor-profile.component';
+import { AvaibleDonationsForUserComponent } from './avaible-donations-for-user/avaible-donations-for-user.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'login', component: AuthPageComponent },
   { path: 'user-profile', component: UserProfileComponent },
-  { path: 'avaible-donations', component: AvaibleDonationsComponent }
+  { path: 'avaible-donations', component: AvaibleDonationsForUserComponent },
+  { path: 'doctor-profile', component: DoctorProfileComponent }
 ];
 
 @NgModule({
@@ -32,7 +34,8 @@ const appRoutes: Routes = [
     UserProfileComponent,
     AvaibleDonationsComponent,
     CauseComponent,
-    DoctorProfileComponent
+    DoctorProfileComponent,
+    AvaibleDonationsForUserComponent
   ],
   imports: [
     MaterializeModule,
