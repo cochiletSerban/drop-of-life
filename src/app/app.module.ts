@@ -21,7 +21,8 @@ const appRoutes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'login', component: AuthPageComponent },
   { path: 'user-profile', component: UserProfileComponent },
-  { path: 'avaible-donations', component: AvaibleDonationsComponent }
+  { path: 'avaible-donations', component: AvaibleDonationsComponent },
+  { path: 'admin-profile', component : AdminProfileComponent }
 ];
 
 @NgModule({
