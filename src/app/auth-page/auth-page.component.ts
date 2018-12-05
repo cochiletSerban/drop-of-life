@@ -1,7 +1,8 @@
 import { Component, OnInit, ElementRef, ViewChild, Renderer2, AfterViewInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { User } from '../objects/User';
+import { RegisterUser } from '../objects/registerUser';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { LoginUser } from '../objects/loginUser';
 declare var $:  any;
 @Component({
   selector: 'app-auth-page',
@@ -21,12 +22,18 @@ export class AuthPageComponent implements OnInit {
   myEmailValidator = '';
   myPasswordValidator = '';
   myUserValidation = '';
+  myBloodTypeValidation = '';
+  myHospitalValidation = '';
   errMsg = '';
   loginLogo = '../../assets/img/PikyLogoCerc.png';
-  user: User;
+  loginUser: LoginUser;
+  registerUser: RegisterUser;
   loginForm: FormGroup;
   registerForm: FormGroup;
   show = false;
+  doctor = false;
+  showDoctorRegister = false;
+  registerText = 'Register';
   constructor(private auth: AuthService, private render: Renderer2) { }
 
 
@@ -39,8 +46,28 @@ export class AuthPageComponent implements OnInit {
     this.registerForm =  new FormGroup({
       'password' : new FormControl(null, Validators.required),
       'email' : new FormControl(null, [Validators.email, Validators.required]),
-      'username' : new FormControl(null, Validators.required)
+      'username' : new FormControl(null, Validators.required),
+      'bloodType': new FormControl(null, Validators.required),
+      'hospital': new FormControl(null),
     });
+  }
+
+  showDoctorRegisterFrom() {
+    this.showDoctorRegister = !this.showDoctorRegister;
+    if (this.showDoctorRegister)  {
+      this.registerText = 'Register as Doctor';
+      this.registerForm.get('hospital').setValidators(Validators.required);
+      this.registerForm.get('bloodType').clearValidators();
+      this.registerForm.get('bloodType').updateValueAndValidity();
+      this.registerForm.get('hospital').updateValueAndValidity();
+
+    } else {
+      this.registerText = 'Register';
+      this.registerForm.get('bloodType').setValidators(Validators.required);
+      this.registerForm.get('hospital').clearValidators();
+      this.registerForm.get('bloodType').updateValueAndValidity();
+      this.registerForm.get('hospital').updateValueAndValidity();
+    }
   }
 
  shakeFrom() {
@@ -61,10 +88,9 @@ export class AuthPageComponent implements OnInit {
 
   login() {
     this.show = false;
-    this.user = {
-      username: '',
+    this.loginUser = {
       email: this.loginForm.value.email,
-      password: this.loginForm.value.password
+      password: this.loginForm.value.password,
     };
     if (!this.loginForm.get('email').valid) {
       this.errMsg = 'Invalid email!';
@@ -82,7 +108,7 @@ export class AuthPageComponent implements OnInit {
       this.myEmailValidator = 'valid';
       this.myPasswordValidator = 'valid';
       this.errMsg = '';
-      this.auth.login(this.user).subscribe(
+      this.auth.login(this.loginUser).subscribe(
         resp => {
           console.log(resp);
         },
@@ -109,19 +135,42 @@ export class AuthPageComponent implements OnInit {
   }
 
   register() {
+
     this.show = false;
     this.moveTitleBar(this.loginPiky);
-    this.user = {
-      username: '',
+    let userType = 1;
+    if (this.showDoctorRegister === true) {
+      userType = 2;
+    }
+    this.registerUser = {
+      username: this.registerForm.value.usernamne,
       email: this.registerForm.value.email,
       password: this.registerForm.value.password,
+      type: userType,
+      bloodType: this.registerForm.value.bloodType,
+      hospital: 'string'
     };
-    if(!this.registerForm.get('username').valid) {
+
+    if (!this.registerForm.get('username').valid) {
       this.myUserValidation = 'invalid';
       this.errMsg = 'No  username';
       this.show = true;
       this.shakeFrom();
+    } else if (!this.registerForm.get('bloodType').valid) {
+      this.myUserValidation = 'valid';
+      this.myBloodTypeValidation = 'invalid';
+      this.errMsg = 'No  bloodType';
+      this.show = true;
+      this.shakeFrom();
+    } else if (!this.registerForm.get('hospital').valid) {
+      this.myBloodTypeValidation = 'valid';
+      this.myHospitalValidation = 'invalid';
+      this.errMsg = 'No  Hospital';
+      this.show = true;
+      this.shakeFrom();
     } else if (!this.registerForm.get('email').valid) {
+      this.myBloodTypeValidation = 'valid';
+      this.myHospitalValidation = 'valid';
       this.errMsg = 'Invalid email!';
       this.show = true;
       this.myEmailValidator = 'invalid';
@@ -137,8 +186,12 @@ export class AuthPageComponent implements OnInit {
       this.myEmailValidator = 'valid';
       this.myPasswordValidator = 'valid';
       this.myUserValidation = 'valid';
+      this.myBloodTypeValidation = 'valid';
+      this.myHospitalValidation = 'valid';
       this.errMsg = '';
-      this.auth.register(this.user).subscribe(
+
+
+      this.auth.register(this.registerUser).subscribe(
         resp => console.log(resp),
         err => {
           this.errMsg = err.error;
@@ -214,5 +267,4 @@ export class AuthPageComponent implements OnInit {
       this.loginLogo = '../../assets/img/PikyLogoCerc.png';
     }
   }
-
 }
