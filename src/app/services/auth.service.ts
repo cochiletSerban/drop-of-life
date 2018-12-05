@@ -5,40 +5,48 @@ import 'rxjs'
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { LoginResponse } from '../objects/loginResponse';
+import { RegisterUser } from '../objects/registerUser';
+import { LoginUser } from '../objects/loginUser';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthService {
 
   token: string;
-  url = 'http://piky.herokuapp.com/';
+  url = 'http://shielded-hollows-19820.herokuapp.com/';
   userStatus = false;
 
-  constructor(private http:HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   isLogedIn() {
+    if ( localStorage.getItem('token') != null ) this.userStatus = true;
+    else this.userStatus = false;
     return this.userStatus;
   }
 
-  register(user){
-     return this.http.post(this.url + 'register', user);
+  register(user: RegisterUser) {
+     return this.http.post(this.url + 'signup', user);
   }
 
-  private logUser(token){
-    // this.userStatus = true;
-    // this.token = token;
-    // return this.userStatus;
+  private logUser(resp: LoginResponse) {
+    this.userStatus = true;
+    localStorage.setItem('token', resp.token);
+    localStorage.setItem('username', resp.username);
+    localStorage.setItem('userType', resp.userType);
+    return resp;
   }
 
-  login(user) {
-   return this.http.post<LoginResponse>(this.url + 'login', {email:user.email, password:user.password})
-      .map(resp => this.logUser(resp.token))
+  login(user: LoginUser) {
+   return this.http.post<LoginResponse>(this.url + 'login', user)
+      .map(resp => this.logUser(resp));
   }
 
-  logout(){
-    // if(this.isLogedIn) {
-    //   this.token = null;
-    //   this.userStatus = false;
-    // }
-  }
-
+  logout() {
+    if (this.isLogedIn) {
+      localStorage.clear();
+      this.token = null;
+      this.userStatus = false;
+      this.router.navigate(['/']);
+    }
 }
+
