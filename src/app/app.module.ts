@@ -5,7 +5,7 @@ import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawe
 
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { GetBgService } from './services/get-bg.service';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthPageComponent } from './auth-page/auth-page.component';
@@ -18,6 +18,7 @@ import { CauseComponent } from './cause/cause.component';
 import { DoctorProfileComponent } from './doctor-profile/doctor-profile.component';
 import { AvaibleDonationsForUserComponent } from './avaible-donations-for-user/avaible-donations-for-user.component';
 import { CreateDonationRequestComponent } from './create-donation-request/create-donation-request.component';
+import { AuthInterceptor } from './interceptor';
 
 const appRoutes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -48,7 +49,7 @@ const appRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [GetBgService, AuthGuardService, AuthService],
+  providers: [GetBgService, AuthGuardService, AuthService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true } ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
