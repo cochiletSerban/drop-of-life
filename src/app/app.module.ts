@@ -19,13 +19,15 @@ import { DoctorProfileComponent } from './doctor-profile/doctor-profile.componen
 import { AvaibleDonationsForUserComponent } from './avaible-donations-for-user/avaible-donations-for-user.component';
 import { CreateDonationRequestComponent } from './create-donation-request/create-donation-request.component';
 import { AuthInterceptor } from './interceptor';
+import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'login', component: AuthPageComponent },
   { path: 'user-profile', component: UserProfileComponent },
   { path: 'avaible-donations', component: AvaibleDonationsForUserComponent },
-  { path: 'doctor-profile', component: DoctorProfileComponent }
+  { path: 'doctor-profile', component: DoctorProfileComponent },
+  { path: 'admin-profile', component : AdminProfileComponent }
 ];
 
 @NgModule({
@@ -38,7 +40,8 @@ const appRoutes: Routes = [
     CauseComponent,
     DoctorProfileComponent,
     AvaibleDonationsForUserComponent,
-    CreateDonationRequestComponent
+    CreateDonationRequestComponent,
+    AdminProfileComponent
   ],
   imports: [
     MaterializeModule,
