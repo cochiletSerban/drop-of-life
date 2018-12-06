@@ -18,7 +18,7 @@
 
       <div class="col s12">
         <!-- Next possible donation on: 22/22/2222 -->
-        <button class="btn"  [routerLink]="['/avaible-donations']">Donate!</button>
+        <button class="btn"  (click)="openModal()">Donate!</button>
       </div>
 
     </div>
@@ -36,6 +36,70 @@
           <div id="bloodWork" class="col s12"><div class="tolo"> tab1</div></div>
           <div id="donationHistory" class="col s12"> <div class="tolo"> tab 2</div>
 
+        </div>
       </div>
+  </div>
+</div>
+
+
+
+<div id="modal" class="modal" 
+    materialize="modal" 
+    [materializeParams]="[{dismissible: true}]" 
+    [materializeActions]="modalActions">
+  
+  <div class="modal-content">
+      <div class="container">
+
+          <div class="row box" *ngIf = "!showSorryText">
+              <div class="col s12 center-align">
+                <div class="row">
+                    <h4>
+                      Donation information  
+                    </h4>
+                    <div class="col s6 push-s3 hr"></div>
+                </div>
+              </div>
+          
+          <div style="font-style:italic;">
+            <p>Giving blood is a simple, safe way to make a big difference in people’s lives. </p>
+            <p>We must make sure it is safe for people to give blood and for patients to receive donated blood.</p>
+            <p>Most people can give blood, but there are some conditions that need to be met.</p>
+            <p>If you want to donate blood, it’s important to make sure you meet the requirements and that you properly prepare.</p>
+          </div>
+          <p style="font-weight:bold;"> Necessary conditions to donate:</p>
+            <!-- <div class="collection">
+                <p *ngFor="let question of questions; let i = index">
+                  <a class="collection-item">{{question}}</a>
+                </p>
+            </div>  -->
+          <ul *ngFor="let question of questions; let i = index" style="list-style-type:disc">
+              <li style="list-style-type:disc"> {{question}} </li>          
+          </ul>
+        </div>
+      </div> 
+
+      <div class="row" *ngIf = "showSorryText">
+        <h6>We are sorry but you do not meet the criteria necessary to donate at this time.</h6>
+      </div>
+      
+  </div>
+
+  <div class="modal-footer">
+    <!-- <button class=" waves-effect waves-light btn" (click)="closeModal()">Agree</button>
+    <button class="modal-action modal-close waves-effect  waves-light  btn">Disagree</button> -->
+
+    <div class="row">
+      <div class="col s12 m6">
+          <button  *ngIf = "!showSorryText" [routerLink]="['/avaible-donations']" class="btn  width modal-action modal-close waves-effect waves-light" (click)="closeModal()" >None of them apply</button>
+          
+      </div>
+      <div class="col s12 m6">
+          <button  *ngIf = "!showSorryText"  (click) = "switchText()" class="btn width waves-effect waves-light" >I have one or more</button>
+      </div>
+        
     </div>
+
+    <button *ngIf = "showSorryText"  (click)="closeModal()" class="btn modal-action modal-close waves-effect  waves-light">Ok</button>
+  </div>
 </div>
