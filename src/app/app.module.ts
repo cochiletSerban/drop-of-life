@@ -25,8 +25,8 @@ const appRoutes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'login', component: AuthPageComponent },
   { path: 'user-profile', component: UserProfileComponent },
-  { path: 'avaible-donations', component: AvaibleDonationsForUserComponent },
   { path: 'doctor-profile', component: DoctorProfileComponent },
+  { path: 'avaible-donations', component: AvaibleDonationsComponent },
   { path: 'admin-profile', component : AdminProfileComponent }
 ];
 
