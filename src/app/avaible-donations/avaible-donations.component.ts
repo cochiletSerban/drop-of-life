@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input } from '@angular/core';
 
 
 @Component({
@@ -7,9 +7,12 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
   styleUrls: ['./avaible-donations.component.scss']
 })
 export class AvaibleDonationsComponent implements OnInit {
+  mainTitle: string = "Avaible Donations"
 
-
-  constructor() { }
+  constructor() { 
+    // if user.type = doctor
+    this.mainTitle = "Donation requests from your hospital"
+  }
 
   ngOnInit() {
   }
