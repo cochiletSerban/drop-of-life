@@ -32,7 +32,7 @@ export class AuthService {
     this.userStatus = true;
     localStorage.setItem('token', resp.token);
     localStorage.setItem('username', resp.username);
-    localStorage.setItem('userType', resp.userType);
+   // localStorage.setItem('userType', resp.userType);
     return resp;
   }
 
@@ -48,5 +48,6 @@ export class AuthService {
       this.userStatus = false;
       this.router.navigate(['/']);
     }
-}
+  }
 
+}
