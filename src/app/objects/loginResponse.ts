@@ -1,4 +1,5 @@
-export class LoginResponse {
-    auth:boolean;
-    token:string;
+export interface LoginResponse {
+    token: string;
+    username: string;
+    userType: number;
 }
