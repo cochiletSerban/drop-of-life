@@ -20,6 +20,7 @@ import { AvaibleDonationsForUserComponent } from './avaible-donations-for-user/a
 import { CreateDonationRequestComponent } from './create-donation-request/create-donation-request.component';
 import { AuthInterceptor } from './interceptor';
 import { AdminProfileComponent } from './admin-profile/admin-profile.component';
+import {PostDonationService } from './services/post-donation.service';
 
 const appRoutes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -52,7 +53,7 @@ const appRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [GetBgService, AuthGuardService, AuthService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true } ],
+  providers: [PostDonationService, GetBgService, AuthGuardService, AuthService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true } ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

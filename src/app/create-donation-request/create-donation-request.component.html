@@ -41,6 +41,11 @@
                   <input id="icon_prefix3" formControlName="requestedQuantity" type="text">
                   <label for="icon_prefix3">Requested Quantity</label>
                 </div>
+
+                <div class="col s12 m6">
+                  <p> {{status}} </p>
+                </div>
+                
               </div>
             </form>
           </div>
@@ -48,7 +53,7 @@
 
     </div>
     <div class="modal-footer">
-      <button class=" modal-action modal-close  waves-effect waves-light btn" >ma doare la bana</button>
-      <button class=" waves-effect  waves-light  btn">Nu-l lasa la moara, doneaza</button>
+      <button class=" modal-action modal-close  waves-effect waves-light btn">Cancel</button>
+      <button class=" waves-effect waves-light btn" (click)="createRequest()">Submit</button>
     </div>
   </div>

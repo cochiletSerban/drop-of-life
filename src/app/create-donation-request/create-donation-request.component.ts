@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { MaterializeDirective, MaterializeAction } from 'angular2-materialize';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { PostDonationService } from '../services/post-donation.service';
 
 @Component({
   selector: 'app-create-donation-request',
@@ -17,7 +18,9 @@ export class CreateDonationRequestComponent implements OnInit {
   hospitalClicked = false;
   patientClicked = false;
   usedIcon = "local_hospital";
-  constructor() { }
+
+  status ="Nothing inserted";
+  constructor(private donationService:PostDonationService) {}
 
   ngOnInit() {
     this.createDonationForm = new FormGroup({
@@ -51,5 +54,32 @@ export class CreateDonationRequestComponent implements OnInit {
     }
   }
 
-  createRequest() {}
+  createRequest() {
+    if(this.createDonationForm.valid) {
+
+      let tk = localStorage.getItem('token');
+      let donationRequest = {
+        token: tk,
+        name:this.createDonationForm.value.name,
+        requestedQuantity: this.createDonationForm.value.requestedQuantity,
+        bloodType: this.createDonationForm.value.bloodType
+      }
+
+      this.donationService.postDonation(donationRequest).subscribe(
+        (response) => {
+          console.log("Resp");
+          console.log(response);
+          this.status = response.message;
+        },
+        (err) => {
+          console.log("Err");
+          //console.log(err);
+        }
+      );
+    }
+    else {
+      this.status="Input not valid";
+      console.log("Input not valid");
+    }
+  }
 }
