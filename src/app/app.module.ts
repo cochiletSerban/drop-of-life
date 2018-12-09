@@ -20,6 +20,8 @@ import { AvaibleDonationsForUserComponent } from './avaible-donations-for-user/a
 import { CreateDonationRequestComponent } from './create-donation-request/create-donation-request.component';
 import { AuthInterceptor } from './interceptor';
 import { AdminProfileComponent } from './admin-profile/admin-profile.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { AdminService } from './services/admin.service';
 
 const appRoutes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -41,7 +43,8 @@ const appRoutes: Routes = [
     DoctorProfileComponent,
     AvaibleDonationsForUserComponent,
     CreateDonationRequestComponent,
-    AdminProfileComponent
+    AdminProfileComponent,
+    NavBarComponent
   ],
   imports: [
     MaterializeModule,
@@ -52,7 +55,7 @@ const appRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [GetBgService, AuthGuardService, AuthService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true } ],
+  providers: [GetBgService, AuthGuardService, AuthService, AdminService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true } ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
