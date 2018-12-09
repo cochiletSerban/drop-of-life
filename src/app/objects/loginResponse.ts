@@ -1,5 +1,6 @@
 export interface LoginResponse {
     token: string;
     username: string;
-    userType: number;
+    user_type: number;
+    is_valid: boolean;
 }

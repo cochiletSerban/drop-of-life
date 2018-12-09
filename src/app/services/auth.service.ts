@@ -28,12 +28,25 @@ export class AuthService {
      return this.http.post(this.url + 'signup', user);
   }
 
+  getUserType(userType: number) {
+    switch (userType) {
+      case 4:
+        return 'donor';
+      case 1:
+        return 'admin';
+      case 3:
+        return 'doctor';
+    }
+  }
+
   private logUser(resp: LoginResponse) {
-    this.userStatus = true;
-    localStorage.setItem('token', resp.token);
-    localStorage.setItem('username', resp.username);
-    //localStorage.setItem('userType', resp.userType);
-    return resp;
+    if (resp.is_valid) {
+      this.userStatus = true;
+      localStorage.setItem('token', resp.token);
+      localStorage.setItem('username', resp.username);
+      localStorage.setItem('userType', resp.user_type.toString());
+    }
+      return resp;
   }
 
   login(user: LoginUser) {
@@ -46,7 +59,7 @@ export class AuthService {
       localStorage.clear();
       this.token = null;
       this.userStatus = false;
-      this.router.navigate(['/']);
+     // this.router.navigate(['/']);
     }
   }
 

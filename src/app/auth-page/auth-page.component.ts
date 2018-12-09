@@ -111,8 +111,21 @@ export class AuthPageComponent implements OnInit {
       this.errMsg = '';
       this.auth.login(this.loginUser).subscribe(
         resp => {
-          console.log(resp);
-          this.router.navigate(['/user-profile']);
+
+          console.log(this.auth.getUserType(resp.user_type));
+
+          if (this.auth.getUserType(resp.user_type) === 'donor') {
+            this.router.navigate(['/user-profile']);
+          } else if (this.auth.getUserType(resp.user_type) === 'admin') {
+            this.router.navigate(['/admin-profile']);
+          } else if (this.auth.getUserType(resp.user_type) === 'doctor') {
+            if (!resp.is_valid) {
+              this.errMsg = "Admin's approval is required";
+              this.show = true;
+            } else {
+            this.router.navigate(['/doctor-profile']);
+            }
+          }
         },
         err => {
           this.errMsg = err.error;
@@ -140,17 +153,17 @@ export class AuthPageComponent implements OnInit {
 
     this.show = false;
     this.moveTitleBar(this.loginPiky);
-    let userType = 1;
+    let userType = 'donor';
     if (this.showDoctorRegister === true) {
-      userType = 2;
+      userType = 'doctor';
     }
     this.registerUser = {
-      username: this.registerForm.value.usernamne,
+      username: this.registerForm.value.username,
       email: this.registerForm.value.email,
       password: this.registerForm.value.password,
       type: userType,
       bloodType: this.registerForm.value.bloodType,
-      hospital: 'string'
+      hospital: this.registerForm.value.hospital
     };
 
     if (!this.registerForm.get('username').valid) {
@@ -192,6 +205,7 @@ export class AuthPageComponent implements OnInit {
       this.myHospitalValidation = 'valid';
       this.errMsg = '';
 
+      console.log(this.registerUser);
 
       this.auth.register(this.registerUser).subscribe(
         resp => console.log(resp),
