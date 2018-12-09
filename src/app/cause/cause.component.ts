@@ -1,6 +1,7 @@
-import { Component, OnInit, AfterViewInit, Renderer2, ElementRef, ViewChild, EventEmitter } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Renderer2, ElementRef, ViewChild, EventEmitter, Input } from '@angular/core';
 import { MaterializeDirective, MaterializeAction } from 'angular2-materialize';
 import { Renderer3 } from '@angular/core/src/render3/renderer';
+import { AvailableDonations } from '../objects/availableDonations';
 
 
 @Component({
@@ -12,6 +13,7 @@ export class CauseComponent implements OnInit, AfterViewInit {
   modalActions = new EventEmitter<string|MaterializeAction>();
   procent = 0;
   @ViewChild('blood') blood: ElementRef;
+  @Input() donations: AvailableDonations;
 
   constructor(private renderer: Renderer2, private el: ElementRef) { }
 

@@ -9,7 +9,7 @@ import { AvailableDonations } from '../objects/availableDonations';
   styleUrls: ['./avaible-donations.component.scss']
 })
 export class AvaibleDonationsComponent implements OnInit {
-  mainTitle: string = "Avaible Donations"
+  mainTitle: string = "Avaible Donations";
   donations : AvailableDonations[];
 
   constructor(private donationService:PostDonationService) { 
