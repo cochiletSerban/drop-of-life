@@ -2,6 +2,8 @@ import { Component, OnInit, ElementRef, ViewChild, Renderer2, AfterViewInit } fr
 import { AuthService } from '../services/auth.service';
 import { User } from '../objects/User';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
 declare var $:  any;
 @Component({
   selector: 'app-auth-page',
@@ -27,14 +29,14 @@ export class AuthPageComponent implements OnInit {
   loginForm: FormGroup;
   registerForm: FormGroup;
   show = false;
-  constructor(private auth: AuthService, private render: Renderer2) { }
+  constructor(private auth: AuthService, private render: Renderer2, private router:Router) { }
 
 
   ngOnInit() {
     $('.tabs').tabs();
     this.loginForm = new FormGroup({
       'password' : new FormControl(null, Validators.required),
-      'email' : new FormControl(null, [Validators.email , Validators.required])
+      'username' : new FormControl(null, Validators.required)
     });
     this.registerForm =  new FormGroup({
       'password' : new FormControl(null, Validators.required),
@@ -62,29 +64,30 @@ export class AuthPageComponent implements OnInit {
   login() {
     this.show = false;
     this.user = {
-      username: '',
-      email: this.loginForm.value.email,
+      email: '',
+      username: this.loginForm.value.username,
       password: this.loginForm.value.password
     };
-    if (!this.loginForm.get('email').valid) {
-      this.errMsg = 'Invalid email!';
+    if (!this.loginForm.get('username').valid) {
+      this.errMsg = 'Invalid username!';
       this.show = true;
-      this.myEmailValidator = 'invalid';
+      this.myUserValidation = 'invalid';
       this.shakeFrom();
     } else if (!this.loginForm.get('password').valid ) {
-      this.myEmailValidator = 'valid';
+      this.myUserValidation = 'valid';
       this.errMsg = 'Invaild password';
       this.show = true;
       this.myPasswordValidator = 'invalid';
       this.shakeFrom();
     } else if (this.loginForm.valid) {
       this.moveTitleBar(this.loginPiky);
-      this.myEmailValidator = 'valid';
+      this.myUserValidation = 'valid';
       this.myPasswordValidator = 'valid';
       this.errMsg = '';
       this.auth.login(this.user).subscribe(
         resp => {
           console.log(resp);
+          this.router.navigate(['/user-profile']);
         },
         err => {
           this.errMsg = err.error;

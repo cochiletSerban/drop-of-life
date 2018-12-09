@@ -10,7 +10,7 @@ import { LoginResponse } from '../objects/loginResponse';
 export class AuthService {
 
   token: string;
-  url = 'http://piky.herokuapp.com/';
+  url = 'http://shielded-hollows-19820.herokuapp.com/';
   userStatus = false;
 
   constructor(private http:HttpClient) {}
@@ -20,7 +20,7 @@ export class AuthService {
   }
 
   register(user:User){
-   return this.http.post(this.url + 'register', user);
+   return this.http.post(this.url + 'signup', user);
   }
 
   private logUser(token){
@@ -30,7 +30,7 @@ export class AuthService {
   }
 
   login(user:User) {
-    return this.http.post<LoginResponse>(this.url + 'login', {email:user.email, password:user.password})
+    return this.http.post<LoginResponse>(this.url + 'login', {username:user.username, password:user.password})
       .map(resp => this.logUser(resp.token))
   }
 
