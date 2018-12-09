@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild, Renderer2, AfterViewInit } fr
 import { AuthService } from '../services/auth.service';
 import { RegisterUser } from '../objects/registerUser';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { LoginUser } from '../objects/loginUser';
 declare var $:  any;
 @Component({
@@ -34,14 +35,14 @@ export class AuthPageComponent implements OnInit {
   doctor = false;
   showDoctorRegister = false;
   registerText = 'Register';
-  constructor(private auth: AuthService, private render: Renderer2) { }
+  constructor(private auth: AuthService, private render: Renderer2, private router: Router) { }
 
 
   ngOnInit() {
     $('.tabs').tabs();
     this.loginForm = new FormGroup({
       'password' : new FormControl(null, Validators.required),
-      'email' : new FormControl(null, [Validators.email , Validators.required])
+      'username' : new FormControl(null, Validators.required)
     });
     this.registerForm =  new FormGroup({
       'password' : new FormControl(null, Validators.required),
@@ -89,28 +90,29 @@ export class AuthPageComponent implements OnInit {
   login() {
     this.show = false;
     this.loginUser = {
-      email: this.loginForm.value.email,
-      password: this.loginForm.value.password,
+      username: this.loginForm.value.username,
+      password: this.loginForm.value.password
     };
-    if (!this.loginForm.get('email').valid) {
-      this.errMsg = 'Invalid email!';
+    if (!this.loginForm.get('username').valid) {
+      this.errMsg = 'Invalid username!';
       this.show = true;
-      this.myEmailValidator = 'invalid';
+      this.myUserValidation = 'invalid';
       this.shakeFrom();
     } else if (!this.loginForm.get('password').valid ) {
-      this.myEmailValidator = 'valid';
+      this.myUserValidation = 'valid';
       this.errMsg = 'Invaild password';
       this.show = true;
       this.myPasswordValidator = 'invalid';
       this.shakeFrom();
     } else if (this.loginForm.valid) {
       this.moveTitleBar(this.loginPiky);
-      this.myEmailValidator = 'valid';
+      this.myUserValidation = 'valid';
       this.myPasswordValidator = 'valid';
       this.errMsg = '';
       this.auth.login(this.loginUser).subscribe(
         resp => {
           console.log(resp);
+          this.router.navigate(['/user-profile']);
         },
         err => {
           this.errMsg = err.error;
