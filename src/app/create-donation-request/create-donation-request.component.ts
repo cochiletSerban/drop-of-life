@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 import { MaterializeDirective, MaterializeAction } from 'angular2-materialize';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PostDonationService } from '../services/post-donation.service';
+import { DonationResponse } from '../objects/donationResponse';
 
 @Component({
   selector: 'app-create-donation-request',
@@ -19,7 +20,7 @@ export class CreateDonationRequestComponent implements OnInit {
   patientClicked = false;
   usedIcon = "local_hospital";
 
-  status ="Nothing inserted";
+  status: string;
   constructor(private donationService:PostDonationService) {}
 
   ngOnInit() {
@@ -68,12 +69,17 @@ export class CreateDonationRequestComponent implements OnInit {
       this.donationService.postDonation(donationRequest).subscribe(
         (response) => {
           console.log("Resp");
-          console.log(response);
-          this.status = response.message;
+          console.log(response.error);
+          console.log(response.message);
+          if(response.message === undefined)
+            this.status = response.error;
+          else
+            this.status = response.message;
         },
         (err) => {
           console.log("Err");
-          //console.log(err);
+          console.log(err);
+          this.status = err;
         }
       );
     }
