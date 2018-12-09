@@ -20,6 +20,7 @@ import { AvaibleDonationsForUserComponent } from './avaible-donations-for-user/a
 import { CreateDonationRequestComponent } from './create-donation-request/create-donation-request.component';
 import { AuthInterceptor } from './interceptor';
 import { AdminProfileComponent } from './admin-profile/admin-profile.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -41,7 +42,8 @@ const appRoutes: Routes = [
     DoctorProfileComponent,
     AvaibleDonationsForUserComponent,
     CreateDonationRequestComponent,
-    AdminProfileComponent
+    AdminProfileComponent,
+    NavBarComponent
   ],
   imports: [
     MaterializeModule,
