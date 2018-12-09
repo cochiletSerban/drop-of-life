@@ -8,33 +8,13 @@
             <div class="col s6 push-s3 hr"></div>
         </div>
         <div class="row">
-          <div class="col center-align s6 m3 l2">
-            <app-cause></app-cause>
-          </div>
-          <div class="col s6 m3 l2">
-              <app-cause></app-cause>
+
+          <!-- for element -->
+          <div *ngFor="let donation of donations; let i = index">
+            <div class="col center-align s6 m3 l2">
+              <app-cause [donations]="donation" ></app-cause>
             </div>
-            <div class="col s6 m3 l2">
-                <app-cause></app-cause>
-              </div>
-              <div class="col s6 m3 l2">
-                  <app-cause></app-cause>
-                </div>
-                <div class="col s6 m3 l2">
-                    <app-cause></app-cause>
-                  </div>
-                  <div class="col s6 m3 l2">
-                      <app-cause></app-cause>
-                    </div>
-                    <div class="col s6 m3 l2">
-                        <app-cause></app-cause>
-                      </div>
-
-
-
-
-
-
+          </div>
 
         </div>
       </div>
