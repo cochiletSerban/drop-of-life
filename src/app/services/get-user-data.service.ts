@@ -5,7 +5,7 @@ import { AvailableDonations } from '../objects/availableDonations';
 
 @Injectable()
 export class GetUserDataService {
-  url = 'http://shielded-hollows-19820.herokuapp.com';
+  url = 'https://shielded-hollows-19820.herokuapp.com';
   constructor(private http: HttpClient) { }
 
   private setUserDataInLocal(data) {

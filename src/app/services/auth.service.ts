@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class AuthService {
 
   token: string;
-  url = 'http://shielded-hollows-19820.herokuapp.com/';
+  url = 'https://shielded-hollows-19820.herokuapp.com/';
   userStatus = false;
 
   constructor(private http: HttpClient, private router: Router) {}
