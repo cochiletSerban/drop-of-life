@@ -3,6 +3,7 @@ import { MaterializeDirective, MaterializeAction } from 'angular2-materialize';
 import { Renderer3 } from '@angular/core/src/render3/renderer';
 import { AvailableDonations } from '../objects/availableDonations';
 import { Router } from '@angular/router';
+import { PostDonationService } from '../services/post-donation.service';
 
 
 @Component({
@@ -18,10 +19,11 @@ export class CauseComponent implements OnInit, AfterViewInit {
   @Input() donations: AvailableDonations;
   params =  ['thank you for you donation' , 3000];
 
-  constructor(private renderer: Renderer2, private el: ElementRef, private router: Router) { }
+  constructor(private renderer: Renderer2, private el: ElementRef, private router: Router, private postDonation: PostDonationService) { }
 
   ngOnInit() {
     this.params =  [this.donations.name + ' thank you for you donation' , 3000];
+    this.procent = this.donations.existing_quantity / this.donations.requested_quantity;
   }
 
 
@@ -36,6 +38,13 @@ export class CauseComponent implements OnInit, AfterViewInit {
   triggerToast() {
     this.globalActions.emit('toast');
     localStorage.setItem('donated', 'true');
+    const donation = {
+      donation_id: this.donations.id,
+      quantity: 0.4
+    };
+    console.log(donation);
+    
+    this.postDonation.makeADonation(donation).subscribe((resp) => console.log(resp));
     this.router.navigate(['/user-profile']);
   }
 
@@ -51,7 +60,7 @@ export class CauseComponent implements OnInit, AfterViewInit {
     //     this.procent = 0;
     //   }
     // }, 1000);
-    this.procent = this.donations.existing_quantity / this.donations.requested_quantity;
+    
   }
 
   checkDonor() {

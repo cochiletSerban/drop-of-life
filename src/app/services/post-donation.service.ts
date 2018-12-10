@@ -29,4 +29,9 @@ export class PostDonationService {
             {hospital: localStorage.getItem('hospital')});
         }
     }
-  }
+
+    makeADonation(donation) {
+
+        return this.http.post('http://shielded-hollows-19820.herokuapp.com/donate', donation);
+    }
+}

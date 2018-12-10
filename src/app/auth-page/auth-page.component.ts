@@ -19,6 +19,8 @@ export class AuthPageComponent implements OnInit {
   @ViewChild('fromContainer') formContainer;
   @ViewChild('tab1') tab1;
   @ViewChild('tab2') tab2;
+  @ViewChild('activeRegister') activeRegister;
+  @ViewChild('activeLogin') activeLogin;
   showLogin = true;
   myEmailValidator = '';
   myPasswordValidator = '';
@@ -208,7 +210,13 @@ export class AuthPageComponent implements OnInit {
       console.log(this.registerUser);
 
       this.auth.register(this.registerUser).subscribe(
-        resp => console.log(resp),
+        (resp) => {
+          console.log(resp);
+          this.cleanForms('register');
+          this.render.removeClass(this.activeRegister.nativeElement,'active');
+          this.render.addClass(this.activeLogin.nativeElement,'active');
+          this.activeLogin.nativeElement.click();
+        },
         err => {
           this.errMsg = err.error;
           this.show = true;
