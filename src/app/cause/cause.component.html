@@ -4,30 +4,35 @@
         <img src="../../assets/img/bloodBag.png" width="140" id="bag" alt="">
         <img src="../../assets/img/blood.png" width="140" id="blood" alt="" #blood [style.transform]="'scaleY(' + procent +')'" >
         <div class="tag center-align">
-           Fatau Jigi
+           {{donations.name}}
            <div class="hr"></div>
-           Are nevoide de 5l de AB+
+           Needs {{donations.requested_quantity-donations.existing_quantity}}L more blood, type {{donations.blood_type}}
         </div>
     </div>
 
     <button class="btn waves-effect waves-light ">Donate</button>
 
     <div id="modal" class="modal bottom-sheet" materialize="modal" [materializeParams]="[{dismissible: true}]" [materializeActions]="modalActions">
+      
       <div class="modal-content">
-        <h4>Fatau Jigi</h4>
+        <h4>{{donations.name}}</h4>
         <div class="hr"></div>
-        <p>mai are nevoie de: 10L de sange de tip AB+ pana pe 23/11/2018</p>
-        <p>ultima persona care a donat a fost: Meleclu Jigi (22/11/2018)</p>
-
-
+        <p>Has {{donations.existing_quantity}}L of blood 
+          and needs {{donations.requested_quantity}}L more blood, type {{donations.blood_type}}
+        </p>
+        <p>There were {{donations.donations_count}} donations until now</p>
+        <p>Donation requested on {{donations.creation_date.date}}</p>
+        <p *ngIf="donations.last_donation_date !== null">
+          Last donation: {{donations.last_donation_date}}
+        </p>
       </div>
+
       <div class="modal-footer">
-        <button class=" waves-effect waves-light btn" (click)="closeModal()">ma doare la bana</button>
-        <button class="modal-action modal-close waves-effect  waves-light  btn">Nu-l lasa la moara, doneaza</button>
+        <button class=" waves-effect waves-light btn" (click)="closeModal()">Cancel</button>
+        <button class="modal-action modal-close waves-effect  waves-light btn">Help and donate</button>
       </div>
+
     </div>
-
-
 </div>
 
 <!--  -->

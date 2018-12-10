@@ -5,23 +5,31 @@ import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawe
 
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { GetBgService } from './services/get-bg.service';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthPageComponent } from './auth-page/auth-page.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AvaibleDonationsComponent } from './avaible-donations/avaible-donations.component';
 import { CauseComponent } from './cause/cause.component';
+import { DoctorProfileComponent } from './doctor-profile/doctor-profile.component';
+import { AvaibleDonationsForUserComponent } from './avaible-donations-for-user/avaible-donations-for-user.component';
+import { CreateDonationRequestComponent } from './create-donation-request/create-donation-request.component';
+import { AuthInterceptor } from './interceptor';
 import { AdminProfileComponent } from './admin-profile/admin-profile.component';
+import {PostDonationService } from './services/post-donation.service';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { AdminService } from './services/admin.service';
 
 const appRoutes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'login', component: AuthPageComponent },
   { path: 'user-profile', component: UserProfileComponent },
-  { path: 'avaible-donations', component: AvaibleDonationsComponent },
+  { path: 'doctor-profile', component: DoctorProfileComponent },
+  { path: 'avaible-donations', component: AvaibleDonationsForUserComponent },
   { path: 'admin-profile', component : AdminProfileComponent }
 ];
 
@@ -33,7 +41,11 @@ const appRoutes: Routes = [
     UserProfileComponent,
     AvaibleDonationsComponent,
     CauseComponent,
-    AdminProfileComponent
+    DoctorProfileComponent,
+    AvaibleDonationsForUserComponent,
+    CreateDonationRequestComponent,
+    AdminProfileComponent,
+    NavBarComponent
   ],
   imports: [
     MaterializeModule,
@@ -41,9 +53,10 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     Angular2FontawesomeModule,
     HttpClientModule,
+    FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [GetBgService, AuthGuardService, AuthService],
+  providers: [PostDonationService, GetBgService, AuthGuardService, AdminService, AuthService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true } ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

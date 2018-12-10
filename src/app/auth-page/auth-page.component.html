@@ -5,7 +5,7 @@
 
 <div class="row animated" #fromContainer>
 
-  <div class="col s12 m6 push-m3 l3 centerOnLarge">
+  <div class="col s12 m6 push-m3 push-l4 l4">
     <div class="titleBarContainer">
       <div class="titleBar">
         <img src="../../assets/img/drop.png" class='animated' #titleBar>
@@ -24,8 +24,8 @@
           <div id="tab1" class="col s12 animated" *ngIf="showLogin" [ngClass]='{slideInLeft:showLogin}' #tab1>
             <form [formGroup]="loginForm" (ngSubmit)="login()">
               <div class="input-field">
-                <input type="email" class="{{myEmailValidator}}" formControlName="email">
-                <label for="email">Email</label>
+                <input type="email" class="{{myUserValidation}}" formControlName="username">
+                <label for="email">Username</label>
               </div>
               <div class="input-field">
                 <input type="password" class="{{myPasswordValidator}}" formControlName="password">
@@ -51,6 +51,17 @@
                 <label for="text">Username</label>
               </div>
 
+
+              <div class="input-field" *ngIf="!showDoctorRegister">
+                <input type="text" class="{{myBloodTypeValidation}}" formControlName="bloodType">
+                <label for="text">BloodType</label>
+              </div>
+
+              <div class="input-field" *ngIf="showDoctorRegister">
+                <input type="text" class="{{myHospitalValidation}}" formControlName="hospital">
+                <label for="text">Hospital</label>
+              </div>
+
               <div class="input-field">
                 <input type="email" class="{{myEmailValidator}}" formControlName="email">
                 <label for="email">Email</label>
@@ -61,7 +72,18 @@
                 <label for="password">Password</label>
               </div>
 
-              <button class="btn waves-light waves-effect" #loginPiky>register</button>
+              <p >
+                <input (click)="showDoctorRegisterFrom()" type="checkbox" id="doctor" />
+                <label for="doctor">Are you a doctor ?</label>
+              </p>
+
+
+
+
+
+
+
+              <button class="btn waves-light waves-effect" #loginPiky>{{registerText}}</button>
 
               <div (click)="show=!show" class="errMsg valign-wrapper animated" *ngIf="show" [ngClass]='{slideInUp:errMsg.length > 0}'>
                 <i class="small material-icons">cancel</i>
