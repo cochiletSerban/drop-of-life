@@ -12,26 +12,26 @@ export class PostDonationService {
 
     postDonation(donationRequest) {
         return this.http.post<DonationResponse>
-        ('http://shielded-hollows-19820.herokuapp.com/add_donation', donationRequest);
+        ('https://shielded-hollows-19820.herokuapp.com/add_donation', donationRequest);
     }
 
     getDonations() {
         // Donator
         if(localStorage.getItem('userType') == '4') {
             return this.http.get<AvailableDonations[]>
-            ('http://shielded-hollows-19820.herokuapp.com/available_donations/blood_type/' + localStorage.getItem('blood_type'));
+            ('https://shielded-hollows-19820.herokuapp.com/available_donations/blood_type/' + localStorage.getItem('blood_type'));
         }
         // Doctor
         else if(localStorage.getItem('userType') == '3') {
             console.log(localStorage.getItem('hospital'));
             return this.http.post<AvailableDonations[]>
-            ('http://shielded-hollows-19820.herokuapp.com/available_donations/hospital',
+            ('https://shielded-hollows-19820.herokuapp.com/available_donations/hospital',
             {hospital: localStorage.getItem('hospital')});
         }
     }
 
     makeADonation(donation) {
 
-        return this.http.post('http://shielded-hollows-19820.herokuapp.com/donate', donation);
+        return this.http.post('https://shielded-hollows-19820.herokuapp.com/donate', donation);
     }
 }
