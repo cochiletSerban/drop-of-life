@@ -29,7 +29,7 @@ const appRoutes: Routes = [
   { path: 'login', component: AuthPageComponent },
   { path: 'user-profile', component: UserProfileComponent },
   { path: 'doctor-profile', component: DoctorProfileComponent },
-  { path: 'avaible-donations', component: AvaibleDonationsComponent },
+  { path: 'avaible-donations', component: AvaibleDonationsForUserComponent },
   { path: 'admin-profile', component : AdminProfileComponent }
 ];
 

@@ -61,11 +61,11 @@ export class CreateDonationRequestComponent implements OnInit {
       let tk = localStorage.getItem('token');
       let donationRequest = {
         token: tk,
-        name:this.createDonationForm.value.name,
-        requestedQuantity: this.createDonationForm.value.requestedQuantity,
-        bloodType: this.createDonationForm.value.bloodType
+        name: this.createDonationForm.value.name,
+        requested_quantity: parseFloat(this.createDonationForm.value.requestedQuantity),
+        blood_type: this.createDonationForm.value.bloodType
       }
-
+      console.log(donationRequest);
       this.donationService.postDonation(donationRequest).subscribe(
         (response) => {
           console.log("Resp");
