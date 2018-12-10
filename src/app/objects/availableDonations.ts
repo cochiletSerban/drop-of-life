@@ -11,5 +11,9 @@ export interface AvailableDonations {
           timezone_type: number,
           timezone: string
     };
-    last_donation_date: Date;
+    last_donation_date: {
+        date: Date,
+        timezone_type: number,
+        timezone: string
+    };
 }
