@@ -21,9 +21,9 @@
           and needs {{donations.requested_quantity}}L more blood, type {{donations.blood_type}}
         </p>
         <p>There were {{donations.donations_count}} donations until now</p>
-        <p>Donation requested on {{donations.creation_date.date}}</p>
+        <p>Donation requested on {{donations.creation_date.date | date:'dd/MM/yyyy'}}</p>
         <p *ngIf="donations.last_donation_date !== null">
-          Last donation: {{donations.last_donation_date}}
+          Last donation: {{donations.last_donation_date | date:'dd/MM/yyyy'}}
         </p>
       </div>
 

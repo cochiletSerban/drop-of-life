@@ -162,7 +162,7 @@ export class AuthPageComponent implements OnInit {
       email: this.registerForm.value.email,
       password: this.registerForm.value.password,
       type: userType,
-      bloodType: this.registerForm.value.bloodType,
+      blood_type: this.registerForm.value.bloodType,
       hospital: this.registerForm.value.hospital
     };
 
