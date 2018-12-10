@@ -23,6 +23,7 @@ import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 import {PostDonationService } from './services/post-donation.service';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { AdminService } from './services/admin.service';
+import { GetUserDataService } from './services/get-user-data.service';
 
 const appRoutes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -56,7 +57,8 @@ const appRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [PostDonationService, GetBgService, AuthGuardService, AdminService, AuthService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true } ],
+  providers: [PostDonationService, GetBgService, AuthGuardService, AdminService,
+     AuthService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, GetUserDataService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

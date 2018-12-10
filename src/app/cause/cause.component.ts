@@ -32,17 +32,18 @@ export class CauseComponent implements OnInit, AfterViewInit {
 
 
   ngAfterViewInit() {
-    let timeleft = 0;
+    // let timeleft = 0;
 
-    const downloadTimer = setInterval(() => {
-      this.procent += timeleft;
-      this.procent = this.procent / 10;
-      timeleft++;
-      if (timeleft > 10) {
-        timeleft = 0;
-        this.procent = 0;
-      }
-    }, 1000);
+    // const downloadTimer = setInterval(() => {
+    //   this.procent += timeleft;
+    //   this.procent = this.procent / 10;
+    //   timeleft++;
+    //   if (timeleft > 10) {
+    //     timeleft = 0;
+    //     this.procent = 0;
+    //   }
+    // }, 1000);
+    this.procent = this.donations.existing_quantity / this.donations.requested_quantity;
   }
 
 }

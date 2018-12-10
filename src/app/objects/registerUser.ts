@@ -3,6 +3,6 @@ export interface RegisterUser {
     email: string;
     password: string;
     type: string;
-    bloodType: string;
+    blood_type: string;
     hospital: string;
 }
