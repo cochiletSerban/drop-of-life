@@ -8,10 +8,12 @@ import { GetUserDataService } from '../services/get-user-data.service';
 })
 export class DoctorProfileComponent implements OnInit {
   modalActions = new EventEmitter<string|MaterializeAction>();
+  name = localStorage.getItem('username');
   constructor(private getUserData: GetUserDataService) {
   }
 
   ngOnInit() {
+    this.name = localStorage.getItem('username');
   }
 
 }

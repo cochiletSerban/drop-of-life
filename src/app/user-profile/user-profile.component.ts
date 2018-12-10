@@ -10,7 +10,8 @@ declare var $: any;
 export class UserProfileComponent implements OnInit {
 
   modalActions = new EventEmitter<string|MaterializeAction>();
-
+  canDonate;
+  name = localStorage.getItem('username');
   questions = [
     "Do you weigh between 50kg and 160kg ?",
     "Are you aged between 17 and 66 ?",
@@ -44,10 +45,16 @@ export class UserProfileComponent implements OnInit {
   showSorryText = false;
   ngOnInit() {
     $('.tabs').tabs();
+    console.log(localStorage.getItem('donated'));
+    if (localStorage.getItem('donated') !== null) {
+      this.canDonate = 'disabled';
+    }
+
+    this.name = localStorage.getItem('username');
   }
 
   openModal() {
-    this.showSorryText = false
+    this.showSorryText = false;
     this.modalActions.emit({action: 'modal', params: ['open']});
   }
 

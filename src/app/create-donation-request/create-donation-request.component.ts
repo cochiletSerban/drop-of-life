@@ -15,8 +15,8 @@ export class CreateDonationRequestComponent implements OnInit {
   selectedOption="";
   namePlaceholder = "Hospital Name";
   hospitalDisable = false;
-  patientDisable = false;
-  hospitalClicked = false;
+  patientDisable = true;
+  hospitalClicked = true;
   patientClicked = false;
   usedIcon = "local_hospital";
 

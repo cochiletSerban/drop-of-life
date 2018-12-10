@@ -10,14 +10,14 @@
         </div>
     </div>
 
-    <button class="btn waves-effect waves-light ">Donate</button>
+    <button *ngIf="checkDonor()" class="btn waves-effect waves-light" (click)="triggerToast()">Donate</button>
 
     <div id="modal" class="modal bottom-sheet" materialize="modal" [materializeParams]="[{dismissible: true}]" [materializeActions]="modalActions">
-      
+
       <div class="modal-content">
         <h4>{{donations.name}}</h4>
         <div class="hr"></div>
-        <p>Has {{donations.existing_quantity}}L of blood 
+        <p>Has {{donations.existing_quantity}}L of blood
           and needs {{donations.requested_quantity}}L more blood, type {{donations.blood_type}}
         </p>
         <p>There were {{donations.donations_count}} donations until now</p>
@@ -29,7 +29,8 @@
 
       <div class="modal-footer">
         <button class=" waves-effect waves-light btn" (click)="closeModal()">Cancel</button>
-        <button class="modal-action modal-close waves-effect  waves-light btn">Help and donate</button>
+        <!-- <button class="modal-action modal-close waves-effect  waves-light btn">Help and donate</button> -->
+        <button  *ngIf="checkDonor()" class="btn modal-action modal-close waves-effect  waves-light btn" (click)="triggerToast()" materialize [materializeParams]="params" [materializeActions]="globalActions">Help and Donate</button>
       </div>
 
     </div>
