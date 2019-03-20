@@ -24,6 +24,7 @@ import {PostDonationService } from './services/post-donation.service';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { AdminService } from './services/admin.service';
 import { GetUserDataService } from './services/get-user-data.service';
+import { AddLogModalComponent } from './add-log-modal/add-log-modal.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -46,7 +47,8 @@ const appRoutes: Routes = [
     AvaibleDonationsForUserComponent,
     CreateDonationRequestComponent,
     AdminProfileComponent,
-    NavBarComponent
+    NavBarComponent,
+    AddLogModalComponent
   ],
   imports: [
     MaterializeModule,

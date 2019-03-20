@@ -64,3 +64,11 @@ i {
   display: block;
   margin: 0 auto 20px;
 }
+
+.modal {
+  max-height: 80%; // modify the modal height
+}
+.modal-content {
+  padding-top: 0px!important;
+  padding-bottom: 0px!important;
+}
