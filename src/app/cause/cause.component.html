@@ -30,7 +30,7 @@
       <div class="modal-footer">
         <button class=" waves-effect waves-light btn" (click)="closeModal()">Cancel</button>
         <!-- <button class="modal-action modal-close waves-effect  waves-light btn">Help and donate</button> -->
-        <button  *ngIf="checkDonor()" class="btn modal-action modal-close waves-effect  waves-light btn" (click)="triggerToast()" materialize [materializeParams]="params" [materializeActions]="globalActions">Help and Donate</button>
+        <button  *ngIf="checkDonor()" class="btn modal-action modal-close waves-effect  waves-light btn" (click)="triggerToast()">Help and Donate</button>
       </div>
 
     </div>
